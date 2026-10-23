@@ -1,5 +1,5 @@
-# Beta gratuita sin llamadas de IA habilitadas de fabrica.
-# Nunca incluyas OPENAI_API_KEY en este archivo ni en GitHub.
+# Configuración de despliegue para Render.
+# Las credenciales se configuran como variables de entorno privadas.
 services:
   - type: web
     name: cvora-web

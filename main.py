@@ -127,6 +127,17 @@ def cleaned(s: str) -> str:
     return s.strip()
 
 
+class ScorePayload(BaseModel):
+    cv: str = Field(min_length=15, max_length=MAX_EXPORT)
+    job: str = Field(default='', max_length=8500)
+
+
+@app.post('/api/score')
+def score_cv(payload: ScorePayload):
+    from cvora_score import evaluate
+    return evaluate(payload.cv, payload.job)
+
+
 @app.post('/api/extract')
 async def extract(file: UploadFile = File(...)):
     name = (file.filename or '').lower()

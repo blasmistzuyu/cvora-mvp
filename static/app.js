@@ -3,7 +3,7 @@ const $ = id => document.getElementById(id);
 const state = {
   source:'upload', fileText:'', sourceFile:null, sourceURL:null, pdfPages:[], pdfTotal:0, originalCV:'', job:'', mode:'demo', busy:false, comparison:false,
   variants:[], selected:0, opinion:'ajustes', preset:'personalizado',
-  undo:[], history:[], result:null, revisions:0, view:'preview'
+  undo:[], history:[], result:null, revisions:0, view:'preview', scoreOriginal:null, scoreLatest:null, scoreSeq:0
 };
 const sampleCV = `Valentina Rojas
 valentina.ejemplo@correo.com · San Miguel de Tucumán
@@ -92,7 +92,86 @@ function renderCVText(box,text,style){
     appendText(box,kind.includes('doc-bullet')?trim.replace(/^[•*\-]\s*/,''):trim,kind,'div');first=false;
   });
 }
-function renderPreview(){renderCVText($('cvPreview'),$('editedCV').value,$('documentStyle').value);}
+function renderPreview(){
+  renderCVText($('cvPreview'),$('editedCV').value,$('documentStyle').value);
+  scheduleScore();
+}
+let scoreTimer = null;
+function scheduleScore(){
+  if (!state.originalCV || $('resultContent').classList.contains('hidden')) return;
+  clearTimeout(scoreTimer);
+  scoreTimer = setTimeout(updateScore, 200);
+}
+function scoreVisual(prefix, result){
+  const value = result.score;
+  $('score'+prefix+'Value').textContent = value;
+  $('score'+prefix+'Level').textContent = result.level;
+  const card = $('score'+prefix+'Card');
+  card.dataset.tone = result.tone;
+  $('scoreArc'+prefix).setAttribute('stroke-dasharray', `${value} 100`);
+  $('score'+prefix+'Message').textContent = prefix === 'Before'
+    ? 'Evaluación del contenido que compartiste.'
+    : 'Evaluación de esta versión; puede cambiar al editarla.';
+}
+function drawScoreBreakdown(before, after){
+  const target = $('scoreCategoryRows');target.replaceChildren();
+  before.categories.forEach((entry, i)=>{
+    const improved = after.categories[i];
+    const row=document.createElement('div');row.className='score-category-row';
+    const name=document.createElement('span');name.className='score-category-name';
+    name.textContent=entry.label;row.appendChild(name);
+    for(const [kind, item] of [['before',entry],['after',improved]]){
+      const meter=document.createElement('div');meter.className='score-small-track';
+      const fill=document.createElement('div');fill.className='score-small-fill '+kind;
+      fill.style.width=item.value+'%';meter.appendChild(fill);
+      const value=document.createElement('span');value.className='score-category-value';
+      value.textContent=String(item.value);
+      const group=document.createElement('div');group.className='score-bar-group';
+      group.appendChild(meter);group.appendChild(value);row.appendChild(group);
+    }
+    target.appendChild(row);
+  });
+}
+async function updateScore(){
+  if (!state.originalCV || !$('editedCV').value.trim()) return;
+  const seq=++state.scoreSeq;
+  try {
+    const job = state.job || '';
+    const current = $('editedCV').value;
+    const requests = state.scoreOriginal
+      ? [Promise.resolve(state.scoreOriginal),jsonPost('/api/score',{cv:current,job})]
+      : [jsonPost('/api/score',{cv:state.originalCV,job}),jsonPost('/api/score',{cv:current,job})];
+    const [before,after]=await Promise.all(requests);
+    if (seq!==state.scoreSeq) return;
+    state.scoreOriginal=before;state.scoreLatest=after;
+    scoreVisual('Before',before);scoreVisual('After',after);
+    const difference=after.score-before.score;
+    const delta=$('scoreDelta');delta.dataset.direction=difference>0?'positive':difference<0?'negative':'neutral';
+    delta.textContent=difference>0?`↗ Mejoraste ${difference} puntos en presentación y contenido.`
+      :difference<0?`↘ Esta versión marca ${Math.abs(difference)} puntos menos. Probá ajustar el contenido.`
+      :'Sin variación en el puntaje: esta versión conserva un nivel de presentación similar.';
+    drawScoreBreakdown(before,after);
+    const tips=$('scoreTips');tips.replaceChildren();
+    after.tips.slice(0,4).forEach(t=>appendText(tips,'• '+t,'','p'));
+  } catch(error){
+    if(seq!==state.scoreSeq)return;
+    $('scoreDelta').textContent='No pudimos calcular el puntaje. Podés seguir editando y descargando tu CV.';
+  }
+}
+function setTheme(theme){
+  const next = theme==='light'?'light':'dark';
+  document.documentElement.dataset.theme=next;
+  $('themeToggle').textContent=next==='dark'?'☀ Tema claro':'☾ Tema oscuro';
+  $('themeToggle').setAttribute('aria-pressed',String(next==='light'));
+  try{localStorage.setItem('cvora-theme',next)}catch(e){}
+}
+function openInstantBuilder(){
+  setSource('create');
+  $('analyzeButtonText').textContent='Crear mi CV ahora';
+  $('herramienta').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>$('createName').focus({preventScroll:true}),400);
+}
+
 const TEMPLATES = [
  ['moderno','Moderno','Turquesa y limpio','#00bda9'],
  ['clasico','Clásico','Formal y tradicional','#33465a'],
@@ -144,7 +223,7 @@ function toggleComparison(force){
 function buildFromScratch(){
  const name=$('createName').value.trim(),experience=$('createExperience').value.trim();
  if(!name){throw new Error('Escribí tu nombre y apellido para empezar.');}
- if(!experience&&!$('createStudies').value.trim()){throw new Error('Contanos al menos tu experiencia, proyectos o estudios.');}
+ if(!experience&&!$('createStudies').value.trim()&&!$('createSkills').value.trim()){throw new Error('Sumá al menos estudios, habilidades o una actividad real para armar tu CV.');}
  const fields=[['',$('createContact').value],['OBJETIVO LABORAL',$('createRole').value],['EXPERIENCIA Y PROYECTOS',experience],['EDUCACIÓN',$('createStudies').value],['HABILIDADES',$('createSkills').value],['OTROS DATOS',$('createExtra').value]];
  let text=name;
  for(const [heading,nodeValue] of fields){const value=nodeValue.trim();if(value)text+='\n\n'+(heading?heading+'\n':'')+value;}
@@ -188,6 +267,8 @@ function clearOpinion(){
   $('revisionRequest').value='';
 }
 function showInitial(data){
+  state.scoreOriginal=null; state.scoreLatest=null; ++state.scoreSeq;
+  document.querySelector('#scoreBeforeCard .score-caption').textContent = state.source==='create' ? 'ANTES · Datos iniciales' : 'ANTES · CV original';
   state.variants=(data.variants||[]).map(v=>({...v}));
   if(!state.variants.length)state.variants=[{id:'equilibrado',title:'Profesional',description:'Versión inicial',content:data.rewritten_cv||state.originalCV}];
   state.selected=0;state.undo=[];state.history=[];state.revisions=0;state.opinion='ajustes';state.preset='personalizado';
@@ -292,6 +373,11 @@ async function buyPlan(){
 }
 async function init(){
   $('year').textContent=String(new Date().getFullYear());
+  setTheme(document.documentElement.dataset.theme);
+  $('themeToggle').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='light'?'dark':'light'));
+  $('heroQuick').addEventListener('click',openInstantBuilder);
+  $('quickStartBtn').addEventListener('click',openInstantBuilder);
+  $('navQuick').addEventListener('click',e=>{e.preventDefault();openInstantBuilder();});
   $('buyPlanBtn').addEventListener('click',buyPlan);refreshCommerce();
   $('tabUpload').addEventListener('click',()=>setSource('upload'));$('tabPaste').addEventListener('click',()=>setSource('paste'));$('tabCreate').addEventListener('click',()=>setSource('create'));
   $('uploadArea').addEventListener('click',()=>$('cvFile').click());

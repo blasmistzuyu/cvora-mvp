@@ -5,8 +5,10 @@
 ## Funcionalidades
 
 - **Importación de CV:** admite archivos PDF, DOCX y TXT, además de texto pegado directamente.
-- **Creación desde cero:** organiza perfil, experiencia, proyectos, educación y habilidades a partir de un formulario.
+- **CV en un instante:** genera un currículum a partir de nombre, contacto, puesto, estudios, habilidades y actividades, incluso sin un CV previo.
 - **Revisión interactiva:** ofrece propuestas de redacción, permite ajustar el nivel de detalle y solicitar modificaciones mediante comentarios.
+- **CVORA Score:** evaluación orientativa de claridad, estructura, experiencias y proyectos, presentación textual, relevancia e información útil; compara ambas versiones con idénticos criterios.
+- **Tema claro y oscuro:** selector accesible, con preferencia guardada en el navegador.
 - **Ocho plantillas:** Moderno, Clásico, Minimalista, Elegante, Ejecutivo, Creativo, Compacto y Simple ATS.
 - **Comparación visual:** muestra el currículum actualizado junto al documento original. Para PDF conserva su diseño en una vista previa renderizada.
 - **Exportación:** genera documentos PDF y Word editables.
@@ -55,6 +57,7 @@ El archivo `.env` está excluido del repositorio mediante `.gitignore`. Nunca pu
 CVORA/
 ├── main.py                 # API y procesamiento de currículums
 ├── commerce.py             # Integración de pagos opcional
+├── cvora_score.py          # Rúbrica de presentación y contenido
 ├── static/
 │   ├── index.html          # Interfaz
 │   ├── styles.css          # Estilos
@@ -73,7 +76,7 @@ python -m pip install -r requirements-dev.txt
 python -m pytest -q
 ```
 
-Las pruebas cubren el procesamiento de documentos, las exportaciones, el flujo de revisión, la comparación y la configuración comercial.
+Las pruebas cubren el procesamiento de documentos, las exportaciones, el flujo de revisión, el análisis de presentación, la interfaz y la configuración comercial.
 
 ## Despliegue
 
@@ -86,3 +89,7 @@ Las integraciones externas requieren configurar sus credenciales como variables 
 CVORA procesa los currículums en memoria y no los almacena intencionalmente como archivos permanentes. Para la redacción asistida solicita consentimiento antes de enviar el texto al proveedor correspondiente. El usuario conserva el control sobre los cambios y debe revisar el contenido antes de usarlo. La aplicación no inventa antecedentes laborales ni garantiza entrevistas o contrataciones.
 
 Este repositorio es una versión en desarrollo. Antes de un lanzamiento comercial deben completarse la identificación y las vías de contacto del responsable, los términos aplicables y los controles de seguridad y recuperación de compras.
+
+## Evaluación de presentación
+
+El indicador **CVORA Score** está basado en una rúbrica determinista de seis criterios y utiliza la misma metodología para el documento original y las revisiones. No se trata de una puntuación de reclutadores, de una certificación ATS ni de una probabilidad de obtener trabajo. Es una guía editorial que señala aspectos observables del texto, por lo que no mide todas las características gráficas de un PDF. El resultado puede mantenerse igual o bajar si una edición no mejora los criterios evaluados. La ruta `POST /api/score` recibe texto y una descripción de puesto opcional.

@@ -1,0 +1,25 @@
+# Beta gratuita sin llamadas de IA habilitadas de fabrica.
+# Nunca incluyas OPENAI_API_KEY en este archivo ni en GitHub.
+services:
+  - type: web
+    name: cvora-web
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: CVORA_ENABLE_AI
+        value: 'false'
+      - key: CVORA_DEPLOYMENT
+        value: 'public'
+      - key: CVORA_ENABLE_PAYMENTS
+        value: 'false'
+      - key: CVORA_PRICE_ARS
+        value: '4900'
+      - key: CVORA_RATE_LIMIT
+        value: '15'
+      - key: CVORA_GLOBAL_AI_LIMIT
+        value: '10'

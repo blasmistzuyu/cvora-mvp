@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07131e">
+  <meta name="description" content="Mejorá tu currículum para tu próximo trabajo. Subí tu CV, revisá sugerencias, adaptalo a una oferta y descargalo en PDF o Word. Gratis para probar.">
+  <meta property="og:title" content="CVORA — Tu experiencia merece destacarse">
+  <meta property="og:description" content="Un CV claro, honesto y listo para tu próxima oportunidad laboral.">
+  <meta property="og:type" content="website">
+  <title>CVORA — Mejorá tu CV para tu próximo trabajo</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="site-header" id="arriba">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="CVORA, inicio">
+        <span class="logo-mark">C<span class="logo-dot"></span></span>
+        <span>CV<span class="logo-a">O</span>RA</span>
+      </a>
+      <nav class="header-links" aria-label="Navegación">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#herramienta">Mejorar CV</a><a href="#planes">Planes</a>
+        <a href="/privacidad">Privacidad</a>
+      </nav>
+      <a class="btn btn-small btn-outline" href="#herramienta">Empezar gratis <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> Tu próxima oportunidad comienza acá</div>
+        <h1>Tu experiencia merece un <span>CV que abra puertas.</span></h1>
+        <p class="hero-sub">Subí tu CV o creá uno desde cero. CVORA propone hasta tres versiones más claras, te explica los cambios y escucha tus comentarios para seguir ajustándolo juntos, sin inventar experiencia.</p>
+        <div class="hero-buttons">
+          <a href="#herramienta" class="btn btn-primary">Mejorar mi currículum <span>→</span></a>
+          <a href="#como-funciona" class="btn btn-ghost">Ver cómo funciona <span>↘</span></a>
+        </div>
+        <div class="hero-trust"><span>✓ Sin cuenta</span><span>✓ PDF y Word</span><span>✓ Tus datos no se guardan</span></div>
+      </div>
+      <div class="hero-stage" aria-label="Ejemplo ilustrativo de mejora de CV">
+        <div class="floating-tag tag-one"><span>✧</span> Más claridad, menos vueltas</div>
+        <div class="sample-sheet">
+          <div class="sheet-header"><div class="sheet-avatar">VA</div><div class="sheet-person"><strong>Valentina A.</strong><span>Atención al cliente</span></div><div class="sheet-verified">✓</div></div>
+          <div class="sheet-divider"></div>
+          <div class="sheet-sec">PERFIL PROFESIONAL</div>
+          <div class="sheet-line w100"></div><div class="sheet-line w88"></div><div class="sheet-line w63"></div>
+          <div class="sheet-sec">EXPERIENCIA Y PROYECTOS</div>
+          <div class="sheet-bullet"><span class="p-dot"></span><div class="sheet-line w88"></div></div>
+          <div class="sheet-bullet"><span class="p-dot"></span><div class="sheet-line w77"></div></div>
+          <div class="sheet-sec">HABILIDADES</div>
+          <div class="sheet-chips"><span>Comunicación</span><span>Excel</span><span>Organización</span></div>
+        </div>
+        <div class="floating-tag tag-two"><span class="twinkle">✦</span><strong>Mejor presentación</strong><small>Sin inventar experiencia</small></div>
+      </div>
+    </section>
+
+    <section class="steps container" id="como-funciona">
+      <div class="section-heading"><div><span class="overline">SIN COMPLICACIONES</span><h2>Del borrador a tu próximo CV.</h2></div><p>Una primera propuesta profesional que podés seguir mejorando. Las revisiones con IA tienen un cupo por compra.</p></div>
+      <div class="steps-grid">
+        <article class="step"><div class="step-number">01 <span>↗</span></div><h3>Compartí tu CV</h3><p>Subí PDF o Word. También podés pegar información o crear tu CV desde cero.</p></article>
+        <article class="step"><div class="step-number">02 <span>✦</span></div><h3>Elegí cuánto texto querés</h3><p>Con IA activada, probá versiones equilibradas, resumidas o con más detalle. Después elegí entre ocho diseños.</p></article>
+        <article class="step"><div class="step-number">03 <span>↓</span></div><h3>Conversá y descargá</h3><p>Decí si te gustó o qué cambiarías. Revisá una vista previa y descargá en PDF o Word.</p></article>
+      </div>
+    </section>
+
+    <section class="price-section container" id="planes" aria-label="Planes de CVORA">
+      <div class="price-panel">
+        <div><span class="overline">PRECIOS TRANSPARENTES</span><h2>Probalo gratis. Mejoralo con IA cuando quieras.</h2>
+          <p>El análisis de estructura, las plantillas, la edición y las descargas están disponibles en el modo gratuito. El plan pago será una opción cuando terminemos de habilitar los cobros.</p>
+          <p class="price-notice" id="checkoutNotice" role="status">Comprobando disponibilidad de pagos…</p></div>
+        <div class="price-offer"><span class="price-label">CVORA CON IA · PAGO ÚNICO</span>
+          <div class="price-amount" id="priceAmount">ARS $4.900</div>
+          <p>1 CV mejorado por IA + hasta 3 revisiones colaborativas.</p>
+          <button class="btn btn-primary" type="button" id="buyPlanBtn" disabled>Consultar disponibilidad</button>
+          <small id="creditsInfo">Sin suscripción. Los pagos reales requieren activación del comercio.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-section container" id="herramienta">
+      <div class="section-heading tool-heading"><div><span class="overline">LA HERRAMIENTA</span><h2>Tu CV, un paso más cerca.</h2></div><div class="state-label" id="modeLabel">Comprobando el modo…</div></div>
+      <div class="workspace">
+        <div class="workspace-form">
+          <div class="panel-heading"><div class="panel-icon">01</div><div><h3>Subí tu CV o crealo acá</h3><p>Solo contanos tu experiencia. Nosotros armamos una propuesta, y vos decidís qué cambiar.</p></div></div>
+          <div class="tab-bar" role="tablist" aria-label="Forma de cargar CV">
+            <button class="tab active" type="button" id="tabUpload" role="tab" aria-selected="true">↑ Subir archivo</button>
+            <button class="tab" type="button" id="tabPaste" role="tab" aria-selected="false">✎ Pegar texto</button><button class="tab" type="button" id="tabCreate" role="tab" aria-selected="false">✦ Crear desde cero</button>
+          </div>
+          <div id="uploadArea" class="upload-area" role="button" tabindex="0" aria-label="Seleccionar archivo PDF Word o texto">
+            <div class="upload-icon">↥</div><strong>Arrastrá tu currículum acá</strong>
+            <span>o <u>elegí un archivo</u> desde tu computadora</span><small>PDF, DOCX o TXT · Máximo 4 MB</small>
+            <input id="cvFile" type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" hidden>
+          </div>
+          <div id="uploadSuccess" class="upload-success hidden"><span>✓</span><div><strong id="fileName">Archivo cargado</strong><small id="fileCount">Texto extraído correctamente</small></div><button id="removeFile" aria-label="Quitar archivo" type="button">×</button></div>
+          <div id="pasteArea" class="hidden">
+            <label for="cvText">Texto de tu CV</label>
+            <textarea id="cvText" rows="9" placeholder="Nombre Apellido\ncorreo@ejemplo.com\n\nFORMACIÓN\nSecundario completo..." maxlength="18000"></textarea>
+          </div>
+          <div id="createArea" class="create-area hidden">
+            <div class="builder-intro"><strong>Armemos tu CV desde cero</strong><p>Escribí tus datos en palabras simples. Si tenés poca experiencia, contanos tus proyectos, estudios o tareas que hayas hecho. CVORA los organizará sin inventar nada.</p></div>
+            <div class="builder-grid">
+              <div class="field"><label for="createName">Nombre y apellido *</label><input id="createName" maxlength="120" placeholder="Ej.: Valentina Rojas"></div>
+              <div class="field"><label for="createContact">Correo / teléfono / ciudad</label><input id="createContact" maxlength="250" placeholder="Tus datos de contacto"></div>
+              <div class="field"><label for="createRole">¿Qué tipo de trabajo buscás?</label><input id="createRole" maxlength="170" placeholder="Ej.: Atención al cliente"></div>
+              <div class="field"><label for="createStudies">Estudios y cursos</label><textarea id="createStudies" rows="3" maxlength="3000" placeholder="Contá qué estudiaste, dónde y cuándo, si lo sabés..."></textarea></div>
+            </div>
+            <div class="field"><label for="createExperience">Contanos tu experiencia, proyectos o actividades *</label><textarea id="createExperience" rows="5" maxlength="8000" placeholder="Ej.: Nunca tuve un empleo formal. Ayudé en el comercio familiar atendiendo clientes y organizando productos. También participé en un proyecto escolar..."></textarea><small>Podés escribir libremente. No hace falta que suene profesional.</small></div>
+            <div class="field"><label for="createSkills">Tus habilidades reales</label><textarea id="createSkills" rows="2" maxlength="3000" placeholder="Ej.: Excel básico, organización, inglés intermedio..."></textarea></div>
+            <div class="field"><label for="createExtra">Otros datos que quieras incluir</label><textarea id="createExtra" rows="2" maxlength="2500" placeholder="Idiomas, voluntariado, certificaciones, disponibilidad, etc."></textarea></div>
+          </div>
+          <details class="advanced-options"><summary>Personalizar para un puesto (opcional)</summary><p>Podés dejarlo vacío. Si compartís una oferta, adaptamos la redacción solo con capacidades que ya tenés.</p><div class="field"><label for="profile">¿Qué tipo de búsqueda estás haciendo?</label>
+            <select id="profile"><option value="auto">Detectar según mi CV</option><option value="primer-empleo">Mi primer trabajo</option><option value="experiencia">Tengo experiencia laboral</option><option value="cambio">Quiero cambiar de rubro</option></select></div>
+          <div class="field"><label for="jobText">Oferta laboral <span class="optional">(opcional)</span></label>
+            <textarea id="jobText" rows="4" maxlength="8500" placeholder="Pegá acá los requisitos del puesto que te interesa... "></textarea><small>Podemos comparar la oferta con tu experiencia real.</small></div>
+          </details><label class="consent" id="consentRow"><input id="aiConsent" type="checkbox"><span>Autorizo el envío del texto de mi CV y, si la incluyo, de la oferta laboral al proveedor de IA para analizarlo. <a href="/privacidad" target="_blank" rel="noopener">Más información</a>.</span></label>
+          <button class="btn btn-primary run-btn" id="analyzeBtn" type="button"><span id="analyzeButtonText">Crear mi nuevo CV</span><span>✦</span></button>
+          <button class="example-link" type="button" id="exampleBtn">↗ Probar con un CV de ejemplo (ficticio)</button>
+          <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="workspace-results" id="workspaceResults">
+          <div class="results-bar"><div class="results-title"><span class="results-glow"></span><span>Análisis y vista previa</span></div><span class="results-pill" id="resultMode">Esperando CV</span></div>
+          <div class="empty-result" id="emptyResult"><div class="empty-orbit"><div class="empty-doc">▤</div></div><h3>Algo bueno empieza acá.</h3><p>Después de subirlo, vas a ver nuevas opciones de CV, consejos y una vista previa. También podés pedir cambios con tus propias palabras.</p><div class="empty-hints"><span>✦ Texto ajustable</span><span>♡ Tu opinión</span><span>↓ PDF y Word</span></div></div>
+          <div id="resultContent" class="result-content hidden">
+            <div class="analysis-box"><div class="analysis-eyebrow">RESULTADO DEL ANÁLISIS</div><h3 id="resultHeadline">—</h3><div id="suggestionList" class="suggestion-list"></div><div id="keywordBlock" class="keyword-section hidden"><strong>Requisitos de la oferta para revisar</strong><div id="keywordList" class="keyword-list"></div><small>Solo incluilos si realmente los cumplís.</small></div></div>
+            <div class="improvements-block" id="improvementsBlock"><h4>✦ Lo que mejoramos</h4><div id="changesList" class="tiny-list"></div></div>
+            <div id="questionsBlock" class="questions-block hidden"><strong>Algo para confirmar, si querés</strong><div id="questionsList" class="tiny-list"></div><small>No agregamos información que no esté confirmada.</small></div>
+            <div class="variant-section">
+              <div class="edit-head"><div><strong>1. ¿Cuánto contenido querés mostrar?</strong><span>Equilibrado, más resumido o con más detalle. Esto cambia las palabras, no el diseño.</span></div><span class="edit-indicator" id="versionCounter">Versión 1</span></div>
+              <div class="variant-grid" id="variantGrid" aria-label="Opciones de CV"></div>
+            </div>
+            <div class="design-section">
+              <div class="edit-head"><div><strong>2. Elegí cómo querés que se vea</strong><span>Ocho plantillas visuales: cambiá la tipografía, colores y distribución sin perder tu contenido.</span></div></div>
+              <select id="documentStyle" class="screen-reader-only" aria-label="Plantilla de CV"><option value="moderno">Moderno</option><option value="clasico">Clásico</option><option value="minimalista">Minimalista</option><option value="elegante">Elegante</option><option value="ejecutivo">Ejecutivo</option><option value="creativo">Creativo</option><option value="compacto">Compacto</option><option value="ats">Simple ATS</option></select>
+              <div class="template-gallery" id="templateGrid" aria-label="Plantillas visuales de CV"></div>
+            </div>
+            <div class="preview-toolbar"><div><strong>3. Tu nuevo CV</strong><span>A la izquierda tenés el resultado. Podés comparar con tu original a la derecha.</span></div><div class="editor-tabs"><button type="button" class="mini-tab active" id="previewTab">Vista previa</button><button type="button" class="mini-tab" id="editTab">Editar texto</button></div></div>
+            <div class="compare-actions"><button class="compare-button" id="compareBtn" type="button" aria-pressed="false">↔ Comparar antes y después</button><button class="minor-button" id="undoBtn" type="button" disabled>↶ Deshacer ajuste</button></div>
+            <div id="comparisonLayout" class="comparison-layout">
+              <div class="new-cv-column"><div class="document-column-title"><span class="column-dot after-dot"></span><strong>DESPUÉS · Tu nuevo currículum</strong></div>
+                <div id="cvPreview" class="document-preview template-moderno" aria-label="Vista previa del nuevo currículum"></div>
+                <textarea id="editedCV" class="cv-editor hidden" rows="17" maxlength="25000" spellcheck="true" aria-label="Editar el currículum antes de descargar"></textarea>
+              </div>
+              <div class="original-cv-column hidden" id="originalColumn"><div class="document-column-title"><span class="column-dot before-dot"></span><strong>ANTES · Tu CV original</strong></div>
+                <div class="original-document-frame" id="originalViewer">
+                  <div class="original-pdf-pages hidden" id="originalPDFPages" aria-label="Páginas originales del currículum PDF"></div>
+                  <div class="document-preview original-recreated hidden" id="originalFormatted" aria-label="Contenido del CV original"></div>
+                </div>
+                <div class="original-footnote" id="originalFootnote">Original sin modificar.</div>
+                <a class="original-link hidden" id="openOriginal" href="#" target="_blank" rel="noopener noreferrer">Abrir PDF original en otra pestaña ↗</a>
+              </div>
+            </div>
+            <p class="result-notice" id="resultNotice"></p>
+            <div class="conversation-card" id="conversationCard">
+              <div class="conversation-title"><span class="conv-icon">♡</span><div><h4>¿Qué te parece esta versión?</h4><p>CVORA escucha lo que querés cambiar. No hace falta empezar de nuevo.</p></div></div>
+              <div class="opinion-row"><button class="opinion" id="likeBtn" type="button" aria-pressed="false">♡ Me gusta</button><button class="opinion" id="dislikeBtn" type="button" aria-pressed="false">✎ Quiero cambios</button></div>
+              <div class="quick-label">O elegí un ajuste rápido:</div>
+              <div class="quick-row" id="quickRow"><button type="button" class="quick-chip" data-preset="menos-texto">Más corto</button><button type="button" class="quick-chip" data-preset="mas-detalle">Más detallado</button><button type="button" class="quick-chip" data-preset="mas-profesional">Más profesional</button><button type="button" class="quick-chip" data-preset="enfatizar-logros">Destacar logros reales</button><button type="button" class="quick-chip" data-preset="formato">Reordenar secciones</button></div>
+              <label for="revisionRequest" class="request-label">Contanos con tus palabras qué cambiarías <span class="optional">(opcional con los ajustes rápidos)</span></label>
+              <textarea id="revisionRequest" rows="3" maxlength="1400" placeholder="Me gusta, pero tiene mucho texto. Quiero que resaltes mis proyectos y mantengas mi experiencia... "></textarea>
+              <button class="btn btn-primary revise-btn" id="reviseBtn" type="button">✦ Aplicar mis cambios <span>→</span></button>
+              <p class="revision-status" id="revisionStatus" role="status" aria-live="polite"></p>
+              <div id="conversationHistory" class="conversation-history" aria-label="Historial de ajustes"></div>
+            </div>
+            <div class="sources-card"><strong>¿En qué nos basamos?</strong><p>Guías públicas para presentar experiencia, logros y habilidades de manera clara. No tenemos acceso a evaluaciones privadas de reclutadores ni prometemos superar filtros automáticos.</p><div id="sourceLinks"></div></div>
+            <div class="export-row"><button class="btn btn-light" id="pdfBtn" type="button">↓ Descargar PDF</button><button class="btn btn-dark" id="docxBtn" type="button">↓ Descargar Word</button></div>
+          </div>
+        </div>
+    </section>
+    <section class="closing container"><div><span class="overline">EN LO QUE CREEMOS</span><h2>Sin inventar experiencia.<br><em>Sin vender humo.</em></h2><p>CVORA busca ayudarte a expresar tus habilidades y experiencias reales con claridad. Ninguna herramienta puede garantizar una entrevista o contratación.</p></div><div class="closing-cards"><div><span>◈</span> Tus datos no se guardan en una base de datos de CVORA.</div><div><span>✦</span> La mejora colaborativa con IA requiere tu autorización.</div><div><span>✓</span> Vos tenés la última palabra antes de enviar tu CV.</div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><div class="logo logo-footer"><span class="logo-mark">C<span class="logo-dot"></span></span><span>CV<span class="logo-a">O</span>RA</span></div><span>Tu experiencia merece destacarse.</span><a href="/privacidad">Privacidad y datos</a><span>© <span id="year">2026</span> CVORA · Versión beta</span></div></footer>
+</body></html>
